@@ -1,0 +1,4 @@
+---
+- include: install_zsh.yml
+
+- include: install_prezto.yml

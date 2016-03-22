@@ -1,0 +1,13 @@
+---
+- hosts: all
+  # remote_user:
+  # sudo:
+  vars:
+    remote_user: "{{ user }}"
+    sudo: "{{ sudo }}"
+    #user: centos
+    #home: /home/{{ user }}
+    user: "{{ remote_user }}"
+    home: "{{ userhome }}"
+  roles:
+    - prezto

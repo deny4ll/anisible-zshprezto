@@ -1,0 +1,18 @@
+---
+- name: Install zsh(OSX)
+  command: /bin/bash -lc "brew install {{ item.package }} {{ item.option }}"
+  with_items:
+    - { package: "zsh", option: "--disable-etcdir" }
+    - { package: "zsh-completions", option: "" }
+  when: ansible_os_family == 'Darwin'
+
+- name: Install zsh(RedHat)
+  yum: name="{{ item }}" state=latest
+  with_items:
+    - "zsh"
+  sudo: yes
+  when: ansible_os_family == 'RedHat'
+
+- name: update zsh
+  shell: rpm -Uvh ftp://ftp.pbone.net/mirror/ftp5.gwdg.de/pub/opensuse/repositories/home:/hyqhyq_3/CentOS_CentOS-6/x86_64/zsh-5.0.2-14.1.x86_64.rpm
+  ignore_errors: true
